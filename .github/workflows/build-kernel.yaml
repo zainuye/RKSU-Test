@@ -28,4 +28,4 @@ jobs:
       kversion: ${{ matrix.kversion }}
       compiler: ${{ matrix.compiler }}
       ksu: ${{ inputs.ksu }}
-      ksu_branch: ${{ inputs,ksu_branch }}
+      ksu_branch: ${{ inputs.ksu_branch }}
