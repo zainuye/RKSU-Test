@@ -32,10 +32,10 @@ jobs:
     - name: Install required dependencies
       run: |
         sudo apt update -y
-        sudo apt install bc bison flex cpio lz4 rsync gcc make aptitude libssl -y
+        sudo apt install bc cpio flex bison aptitude git python-is-python3 tar perl wget aria2 curl lz4 -y
         sudo aptitude install libssl-dev -y
 
-    - name: Build kernelsu.ko
+    - name: Build
       run: |
         echo $(pwd)
         bash handle.sh "${{ inputs.compiler }}" "${{ inputs.kversion }}" "${{ inputs.ksu }}" "${{ inputs.ksu_branch }}"
