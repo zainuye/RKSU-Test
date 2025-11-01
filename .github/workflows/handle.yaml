@@ -22,7 +22,7 @@ on:
 
 jobs:
   build-kernel-core:
-    name: Build for ${{ inputs.kversion }}
+    name: Build for Kernel ${{ inputs.kversion }}
     runs-on: ubuntu-latest
 
     steps:
