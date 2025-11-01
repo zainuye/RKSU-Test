@@ -22,7 +22,7 @@ on:
 
 jobs:
   build-kernel-core:
-    name: Build kernelsu.ko for ${{ inputs.kmi }}
+    name: Build for ${{ inputs.kmi }}
     runs-on: ubuntu-latest
 
     steps:
