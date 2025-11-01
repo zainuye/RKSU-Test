@@ -44,7 +44,9 @@ elif [ "$COMPILER" == "gcc" ]; then
 fi
 
 KDIR="kernel_$KERNEL_VERSION"
-if [ "$KERNEL_VERSION" == "419" ]; then
+if [ "$KERNEL_VERSION" == "54" ]; then
+	fetch_kernel android12-5.4-lts $KDIR
+elif [ "$KERNEL_VERSION" == "419" ]; then
 	fetch_kernel deprecated/android-4.19-stable $KDIR
 elif [ "$KERNEL_VERSION" == "414" ]; then
 	fetch_kernel deprecated/android-4.14-stable $KDIR
@@ -61,9 +63,11 @@ export CROSS_COMPILE=$(pwd)/gcc-6.4/bin/aarch64-linux-gnu-
 export CLANG_TRIPLE=$CROSS_COMPILE
 export PATH=$(pwd)/clang-11/bin:$PATH
 
-if [ "$COMPILER" == "llvm" ] && [ "$KERNEL_VERSION" == "419" ]; then
+if [ "$COMPILER" == "llvm" ]; then
+if [ "$KERNEL_VERSION" == "419" ] || [ "$KERNEL_VERSION" == "54" ]; then
 	export LLVM=1
 	export LLVM_IAS=1
+fi
 fi
 
 cd $KDIR && setup_kernelsu $KERNELSU_REPO $KERNELSU_BRANCH
