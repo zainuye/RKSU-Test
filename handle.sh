@@ -64,7 +64,7 @@ elif [ "$KERNEL_VERSION" == "44" ]; then
 	DEFCONFIG="defconfig"
 fi
 
-echo -e "\n\n DIR: $(pwd)\n\n"
+echo -e "\nCurrent Directory: $(pwd)\n"
 
 export ARCH=arm64
 export CROSS_COMPILE=$(pwd)/gcc-6.4/bin/aarch64-linux-gnu-
@@ -83,9 +83,7 @@ OLD_CONFIG="$(base64 $KDIR/arch/arm64/configs/defconfig)"
 cp $(pwd)/$CONFIG $KDIR/arch/arm64/configs/defconfig
 NEW_CONFIG="$(base64 $KDIR/arch/arm64/configs/defconfig)"
 
-if [ "$OLD_CONFIG" != "$NEW_CONFIG" ]; then
-	echo "INFO: Defconfig has been replaced."
-fi
+[ "$OLD_CONFIG" != "$NEW_CONFIG" ] && echo "INFO: Defconfig has been replaced." || exit 1;
 
 cd $KDIR && setup_kernelsu $KERNELSU_REPO $KERNELSU_BRANCH
 
