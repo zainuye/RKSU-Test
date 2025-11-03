@@ -1,4 +1,4 @@
-# KernelSU build tester on non-GKI/GKI1 Kernel
+# KernelSU build tester for non-GKI/GKI1 Kernel
 
 ## Introductions
 
