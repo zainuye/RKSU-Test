@@ -65,7 +65,6 @@ export ARCH=arm64
 export CROSS_COMPILE=$(pwd)/gcc-6.4/bin/aarch64-linux-gnu-
 export CLANG_TRIPLE=$CROSS_COMPILE
 export PATH=$(pwd)/clang-11/bin:$PATH
-export KSU_DRY_RUN=1
 
 if [ "$COMPILER" == "llvm" ]; then
 if [ "$KERNEL_VERSION" == "419" ] || [ "$KERNEL_VERSION" == "54" ]; then
@@ -83,8 +82,8 @@ NEW_CONFIG="$(base64 $KDIR/arch/arm64/configs/defconfig)"
 
 cd $KDIR && setup_kernelsu $KERNELSU_REPO $KERNELSU_BRANCH
 
-make CONFIG_SECTION_MISMATCH_WARN_ONLY=y defconfig -j$(nproc --all)
-make CONFIG_SECTION_MISMATCH_WARN_ONLY=y -j$(nproc --all)
+make CONFIG_KSU_MANUAL_HOOK=y CONFIG_SECTION_MISMATCH_WARN_ONLY=y defconfig -j$(nproc --all)
+make CONFIG_KSU_MANUAL_HOOK=y CONFIG_SECTION_MISMATCH_WARN_ONLY=y -j$(nproc --all)
 
 echo "========================================="
 echo "Total build time: $SECONDS"
