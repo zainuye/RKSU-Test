@@ -39,10 +39,3 @@ jobs:
       run: |
         echo $(pwd)
         bash handle.sh "${{ inputs.compiler }}" "${{ inputs.kversion }}" "${{ inputs.ksu }}" "${{ inputs.ksu_branch }}"
-
-    - name: "📤 Upload kernel"
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: ${{ env.WORK_DIR }}/${{ env.IMAGE_NAME }}
-          retention-days: 3
